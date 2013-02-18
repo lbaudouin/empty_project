@@ -22,3 +22,10 @@ $ cd build
 $ cmake ..
 $ make -j 3
 $ make install
+
+Create documentation :
+$ mkdir build 
+$ cd build
+$ cmake ..
+$ make doc
+$ firefox ./doc/html/index.html &

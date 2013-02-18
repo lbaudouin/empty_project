@@ -15,7 +15,7 @@
 #MyExecutable
 ADD_EXECUTABLE(MyExecutable
 	main.cpp
-	../src/my_source.cpp
+	../src/my_class.cpp
 )
 #TARGET_LINK_LIBRARIES( MyExecutable -l<name>)
 
