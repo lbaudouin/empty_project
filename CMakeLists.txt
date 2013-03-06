@@ -25,7 +25,6 @@ SET(CXX_DISABLE_WERROR 1)
 
 #Options
 OPTION(INSTALL_BINARIES "Install binaries." FALSE)
-OPTION(INSTALL_COMPLETE "Install completion files." FALSE)
 OPTION(ENABLE_TEST "Enable test" FALSE)
 
 #Include directories
@@ -37,10 +36,24 @@ ADD_SUBDIRECTORY(bin)
 #Build tests
 ADD_SUBDIRECTORY(test)
 
+#Build unit testing
 IF(ENABLE_TEST)
   ENABLE_TESTING()
   ADD_SUBDIRECTORY(unitTesting)
 ENDIF(ENABLE_TEST)
+
+#Install complete
+IF(INSTALL_BINARIES)
+  OPTION(INSTALL_COMPLETE "Install completion files." FALSE)
+  IF(INSTALL_COMPLETE)
+    SET(COMPLETION_DIR /etc/bash_completion.d/ CACHE PATH "Completion folder")
+    file(GLOB Matcher_COMPLETE complete/*.sh)
+    INSTALL(FILES ${Matcher_COMPLETE}
+	DESTINATION ${COMPLETION_DIR}
+        PERMISSIONS OWNER_READ GROUP_READ WORLD_READ OWNER_WRITE
+    )
+  ENDIF(INSTALL_COMPLETE)
+ENDIF(INSTALL_BINARIES)
 
 #Create documentation
 FIND_PACKAGE( Doxygen )
