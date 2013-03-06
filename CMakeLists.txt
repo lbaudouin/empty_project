@@ -15,7 +15,6 @@
 
 CMAKE_MINIMUM_REQUIRED(VERSION 2.6)
 
-
 SET(PROJECT_NAME MyProjectName)
 SET(PROJECT_DESCRIPTION "")
 SET(PROJECT_URL "")
@@ -24,16 +23,28 @@ SET(CUSTOM_HEADER_DIR "${PROJECT_NAME}")
 
 SET(CXX_DISABLE_WERROR 1)
 
-FIND_PACKAGE( Doxygen )
+#Options
+OPTION(INSTALL_BINARIES "Install binaries." FALSE)
+OPTION(INSTALL_COMPLETE "Install completion files." FALSE)
+OPTION(ENABLE_TEST "Enable test" FALSE)
 
+#Include directories
+include_directories ( ${CMAKE_SOURCE_DIR}/include/ )
+
+#Build binaries
 ADD_SUBDIRECTORY(bin)
+
+#Build tests
 ADD_SUBDIRECTORY(test)
+
+IF(ENABLE_TEST)
+  ENABLE_TESTING()
+  ADD_SUBDIRECTORY(unitTesting)
+ENDIF(ENABLE_TEST)
+
+#Create documentation
+FIND_PACKAGE( Doxygen )
 
 add_custom_target(doc
 ${DOXYGEN_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/doc/Doxyfile
 COMMENT "Generating API documentation with Doxygen" VERBATIM)
-
-
-
-
-

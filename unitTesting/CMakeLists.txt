@@ -12,9 +12,18 @@
 # received a copy of the GNU Lesser General Public License along with
 # software. If not, see <http://www.gnu.org/licenses/>.
 
-#Test1
-#ADD_EXECUTABLE(Test1
-#	test1.cpp
-#)
-#TARGET_LINK_LIBRARIES( Test1 -l${PROJECT_NAME})
+#TestTrue
+ADD_EXECUTABLE(TestTrue
+	TestTrue.cpp
+)
+#TARGET_LINK_LIBRARIES( TestTrue -l<lib_name>)
 
+ADD_TEST(TestTrue TestTrue)
+
+#TestFalse
+ADD_EXECUTABLE(TestFalse
+	TestFalse.cpp
+)
+#TARGET_LINK_LIBRARIES( TestFalse -<lib_name>)
+
+ADD_TEST(TestFalse TestFalse)
