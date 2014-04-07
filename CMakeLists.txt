@@ -1,22 +1,25 @@
-# Copyright 2013, MY NAME
+# Copyright 2014, MY NAME
 #
-# This file is part of a free software: you can redistribute it and/or
-# modify it under the terms of the GNU Lesser General Public License
+# This file is part of a free library: you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
 # as published by the Free Software Foundation, either version 3 of
 # the License, or (at your option) any later version.
 #
-# This project is distributed in the hope that it will be useful, but
+# This library is distributed in the hope that it will be useful, but
 # WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-# General Lesser Public License for more details.  You should have
-# received a copy of the GNU Lesser General Public License along with
-# this project. If not, see <http://www.gnu.org/licenses/>.
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+# General Public License for more details. You should have
+# received a copy of the GNU General Public License along with
+# this library. If not, see <http://www.gnu.org/licenses/>.
 
 CMAKE_MINIMUM_REQUIRED(VERSION 2.6)
 
+#Define the project
 SET(PROJECT_NAME MyProjectName)
 SET(PROJECT_DESCRIPTION "")
 SET(PROJECT_URL "")
+SET(PROJECT_VERSION "0.0.1")
+SET(PROJECT_REQUIREMENTS "")
 
 SET(CUSTOM_HEADER_DIR "${PROJECT_NAME}")
 
@@ -69,7 +72,8 @@ ENDIF(INSTALL_BINARIES)
 FIND_PACKAGE( Doxygen )
 
 IF(DOXYGEN_FOUND)
+  CONFIGURE_FILE(${CMAKE_SOURCE_DIR}/doc/Doxyfile.in ${PROJECT_BINARY_DIR}/doc/Doxyfile )
   add_custom_target(doc
-  ${DOXYGEN_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/doc/Doxyfile
+  ${DOXYGEN_EXECUTABLE} ${PROJECT_BINARY_DIR}/doc/Doxyfile
   COMMENT "Generating API documentation with Doxygen" VERBATIM)
 ENDIF(DOXYGEN_FOUND)

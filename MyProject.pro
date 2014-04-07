@@ -1,14 +1,46 @@
+#-------------------------------------------------
+#
+# Copyright 2014, MY NAME
+#
+# This file is part of a free software: you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation, either version 3 of
+# the License, or (at your option) any later version.
+#
+# This software is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# General Public License for more details. You should have
+# received a copy of the GNU General Public License along with
+# this software. If not, see <http://www.gnu.org/licenses/>.
+#
+#-------------------------------------------------
+
+#If use Qt
+#QT       += core gui svg
+#CONFIG -= qt gui console app_bundle
+
+unix {
+    TARGET = MyExecutable
+
+    isEmpty(PREFIX){
+        PREFIX = /usr/local/bin/
+    }
+
+    target.path = $$PREFIX
+
+    INSTALLS += target
+}
+
+win32 {
+    TARGET = myexecutable
+}
+
 TEMPLATE = app
-CONFIG -= qt gui console app_bundle
 
-TARGET = MyExecutable
-
-SOURCES += bin/main.cpp \
-    src/my_class.cpp
+SOURCES += src/my_class.cpp
 
 HEADERS += include/my_class.h
 
-OTHER_FILES += \
-    README \
-    CMakeLists.txt \
-    complete/mycompletion.sh
+OTHER_FILES += README
+
